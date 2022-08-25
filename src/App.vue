@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Conference :currentLink="currentLink" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapActions, mapState } from 'vuex'
+import Conference from '@/components/Conference'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Conference
+  },
+  computed: {
+    ...mapState(['currentLink'])
+  },
+  methods: {
+    ...mapActions(['getCurrentLink'])
+  },
+  mounted() {
+    this.getCurrentLink()
   }
 }
 </script>
